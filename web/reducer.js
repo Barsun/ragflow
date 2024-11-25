@@ -6,7 +6,7 @@ const mainContext = React.createContext();
 const reducer = (state, action) => {
   switch (action.type) {
     case CHANGE_LOCALE:
-      return { ...state, locale: action.locale || 'zh' };
+      return { ...state, locale: action.locale || 'fr' };
     default:
       return state;
   }
@@ -14,7 +14,7 @@ const reducer = (state, action) => {
 
 const ContextProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, {
-    locale: 'zh',
+    locale: 'fr',
   });
   return (
     <mainContext.Provider value={{ state, dispatch }}>
