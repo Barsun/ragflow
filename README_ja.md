@@ -8,7 +8,8 @@
   <a href="./README.md">English</a> |
   <a href="./README_zh.md">简体中文</a> |
   <a href="./README_ja.md">日本語</a> |
-  <a href="./README_ko.md">한국어</a>
+  <a href="./README_ko.md">한국어</a> |
+  <a href="./README_id.md">Bahasa Indonesia</a>
 </p>
 
 <p align="center">
@@ -53,9 +54,9 @@
 
 ## 🔥 最新情報
 
+- 2024-11-22 エージェントでの変数の定義と使用法を改善しました。
 - 2024-11-01 再現の精度を向上させるために、解析されたチャンクにキーワード抽出と関連質問の生成を追加しました。
 - 2024-09-13 ナレッジベース Q&A の検索モードを追加しました。
-- 2024-09-09 エージェントに医療相談テンプレートを追加しました。
 - 2024-08-22 RAG を介して SQL ステートメントへのテキストをサポートします。
 - 2024-08-02 [graphrag](https://github.com/microsoft/graphrag) からインスピレーションを得た GraphRAG とマインド マップをサポートします。
 
@@ -203,6 +204,23 @@
 > $ docker compose -f docker/docker-compose.yml up -d
 > ```
 
+### Elasticsearch から Infinity にドキュメントエンジンを切り替えます
+
+RAGFlow はデフォルトで Elasticsearch を使用して全文とベクトルを保存します。［Infinity］に切り替え（https://github.com/infiniflow/infinity/)、次の手順に従います。
+
+1. 実行中のすべてのコンテナを停止するには：
+   ```bash
+   $ docker compose -f docker/docker-compose.yml down -v
+   ```
+2. **docker/.env** の「DOC _ ENGINE」を「infinity」に設定します。
+
+3. 起動コンテナ：
+   ```bash
+   $ docker compose -f docker/docker-compose.yml up -d
+   ```
+> [!WARNING]  
+> Linux/arm64 マシンでの Infinity への切り替えは正式にサポートされていません。
+
 ## 🔧 ソースコードでDockerイメージを作成（埋め込みモデルなし）
 
 この Docker イメージのサイズは約 1GB で、外部の大モデルと埋め込みサービスに依存しています。
@@ -249,7 +267,7 @@ docker build -f Dockerfile -t infiniflow/ragflow:dev .
 
    `/etc/hosts` に以下の行を追加して、**docker/service_conf.yaml** に指定されたすべてのホストを `127.0.0.1` に解決します:  
    ```
-   127.0.0.1       es01 mysql minio redis
+   127.0.0.1       es01 infinity mysql minio redis
    ```  
    **docker/service_conf.yaml** で mysql のポートを `5455` に、es のポートを `1200` に更新します（**docker/.env** に指定された通り）.
 

@@ -126,6 +126,31 @@ const routes = [
     component: '@/pages/demo',
     layout: false,
   },
+  {
+    path: '/home',
+    layout: false,
+    component: '@/pages/home',
+  },
+  {
+    path: '/profile-setting',
+    layout: false,
+    component: '@/pages/profile-setting',
+    routes: [
+      { path: '/profile-setting', redirect: '/profile-setting/profile' },
+      {
+        path: '/profile-setting/profile',
+        component: '@/pages/profile-setting/profile',
+      },
+      {
+        path: '/profile-setting/team',
+        component: '@/pages/profile-setting/team',
+      },
+      {
+        path: '/profile-setting/plan',
+        component: '@/pages/profile-setting/plan',
+      },
+    ],
+  },
 ];
 
 export default routes;
