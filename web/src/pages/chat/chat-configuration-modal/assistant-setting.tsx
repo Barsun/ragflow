@@ -75,7 +75,7 @@ const AssistantSetting = ({ show, form }: ISegmentedContentProps) => {
       >
         <Select
           options={[
-            { value: 'Chinese', label: t('chinese', { keyPrefix: 'common' }) },
+            { value: 'French', label: t('french', { keyPrefix: 'common' }) },
             { value: 'English', label: t('english', { keyPrefix: 'common' }) },
           ]}
         />
